@@ -1,0 +1,134 @@
+body{
+    background-image: url(./img/default.gif);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    text-align: center;
+    margin: 0;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    overflow: hidden;
+}
+@media (max-width:400px){
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100vh;
+    }
+    .container{
+        width: 100%;
+        height: 60%;
+    }
+    input,button{
+        width: 100%;
+        height: 80vh;
+    }
+
+}
+.gifSol{
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.gifCloudy{
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.gifRain{
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.gifFrost{
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.container,.fieldset, .input{
+    z-index: 2;
+}
+.header>img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-95%);
+    z-index: 1;
+    pointer-events: none;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    backdrop-filter: blur(16px);
+    width: 300px;
+    min-height: 370px;
+    border: 1px solid white;
+    border-radius: 8px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+
+}
+.form1{
+    display: none;
+    margin-top: 100px;
+}
+.form2{
+    display: none;
+    margin-top: 100px;
+}
+fieldset{
+    border: 0;
+}
+input{
+    width: 200px;
+    height: 30px;
+    outline: 0;
+    border: 0;
+    border-radius: 6px;
+    background-color: #D6DEE2;
+}
+#limparC{
+ color: white;
+ font-size:15pt;
+}
+#limparC2{
+    color: white;
+    font-size:15pt;
+   }
+button{
+    display: block;
+    margin-top: 5px;
+    width: 206px;
+    height: 25px;
+    outline: 0px;
+    border:0px;
+    border-radius: 6px;
+    background-color: #D6DEE2;
+}
+#voltar{
+    margin-top: 30px;
+    color: white;
+    font-size:25pt;
+}
+#voltar2{
+    margin-top: 30px;
+    color: white;
+    font-size:25pt;
+}
+.btnCidade, .btnCep{
+    display:inline-block;
+    width: 100px;
+    z-index: 2;
+}

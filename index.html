@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div id ="gif" class="gif">
+        <img id="gifSol" class= "gifSol" src="./img/sunny.gif" alt="Céu limpo">
+        <img id="gifCloudy" class="gifCloudy" src="./img/cloudy.gif" alt="Nublado">
+        <img id="gifRain" class="gifRain" src="./img/steady rain.gif" alt="Chuva">
+        <img id="gifFrost" class="gifFrost" src="./img/neve.gif" alt="Neve">
+    </div>
+    <div class="container">
+        <div class="header">
+            <img src="./img/favicon.ico" alt="">
+        </div>
+        <div class="main">
+            <form action="" autocomplete="off" id="form1" class="form1">
+                <fieldset>
+                    <input id="cidade" type="text" placeholder="Informe a Cidade" required>
+                    <i id="limparC" class="fa-solid fa-eraser" onclick="limparCampos(event)"></i>
+                    <button id="button_cidade" type="button" onclick="chamarAPI()">Buscar ⛅</button>
+                    <i id="voltar" class="fa-solid fa-backward" onclick="voltar()"></i>
+                </fieldset>
+            </form>
+            <form action="" autocomplete="off" id="form2" class="form2">
+                <fieldset>
+                    <input id="input_cep"type="text" placeholder="Informe o CEP" required>
+                    <i id="limparC2" class="fa-solid fa-eraser" onclick="limparCampos(event)"></i>
+                    <button id="button_cep" type="button" onclick="buscarCEP()">Buscar ⛅</button>
+                    <i id="voltar2" class="fa-solid fa-backward" onclick="voltar()"></i>
+                </fieldset>
+            </form>
+            <div id="mostrarPrevisao" class="mostrarPrevisao">
+                <p id="city"></p>
+                <p id="pais"></p>
+                <p id="clima"></p>
+                <p id="ventania"></p>
+            </div>
+            <button type="button" id="btnCidade" class="btnCidade" onclick="modalCidade()">Cidade</button>
+            <button type="button" id="btnCep" class="btnCep" onclick="modalCep()">CEP</button>
+        </div>
+    </div>
+    <script src="./script.js" defer></script>
+</body>
+</html>
