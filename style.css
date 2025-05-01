@@ -50,6 +50,15 @@ body{
     height: 100%;
     z-index: 1;
 }
+.gifEarthSpin{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,45%);
+    z-index: 3;
+    height: 140px;
+}
 .container,.fieldset, .input{
     z-index: 2;
 }

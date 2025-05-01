@@ -2,62 +2,75 @@
         async function chamarAPI(cidade){
             try{
                 cidade = document.getElementById('cidade').value;
-                const resp = await fetch(`http://localhost:3000/cidade/${cidade}`, {
+                document.querySelector('#gifEarthSpin').style.display = 'block';
+                document.querySelector('#voltar').style.display = 'none';
+                const resp = await fetch(`http://localhost:3000/cidade/previsao/${cidade}`, {
                     method: 'GET'
                 });
                 const obj = await resp.json();
+               
                 if(cidade.trim()=== "" || !obj.name){
                     console.log(obj.json)
                     window.alert('Cidade inválida :/')
+                    document.querySelector('#gifEarthSpin').style.display = 'none';
                     limparCampos()
                 }
                 else{
                     showPrevisao(obj);
                     console.log(obj);
                     gifTempo(obj);
+                    document.querySelector('#gifEarthSpin').style.display = 'none';
                     document.querySelector('#voltar').style.display = 'none';
                     }
             }
             catch(error){
                 console.error('Servidor indisponível:' + error);
                 window.alert('Erro ao processar a solicitação, Por favor, tente novamente mais tarde :/')
+                document.querySelector('#gifEarthSpin').style.display = 'none';
+                document.querySelector('#voltar').style.display = 'block';
             }
             }
             
-        async function buscarCEP(){
+        async function buscarCEP(obj){
             try{
                 const input_cep = document.getElementById('input_cep').value;
-                const respCEP = await fetch(`http://localhost:3000/cep/${input_cep}`, {
-                method: 'GET'
-            });
-                const dadosCEP = await respCEP.json()
-            if (input_cep.trim()=== "" || !respCEP.ok) { 
-                window.alert('CEP inválido :/');
-                console.log('Erro ao validar o CEP: ' + respCEP.status + respCEP.statusText)
-                return;
-            }
-            else{
-                const apiKEY = "5b036c89626317d693e836e666f07c3f";
-                const urlAPI = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(dadosCEP.localidade)}&appid=${apiKEY}&units=metric&lang=pt_br`;
-                const resp = await fetch(urlAPI); 
-                const objCEP = await resp.json();
-                showPrevisao(objCEP);
-                gifTempo(objCEP);
+                document.querySelector('#gifEarthSpin').style.display = 'block';
                 document.querySelector('#voltar2').style.display = 'none';
+                const respCEP = await fetch(`http://localhost:3000/cep/${input_cep}`, {
+                    method: 'GET'
+                });
+
+                if (input_cep.trim()=== "" || !respCEP.ok) { 
+                    window.alert('CEP inválido :/');
+                    console.log('Erro ao validar o CEP: ' + respCEP.status + respCEP.statusText)
+                    return;
+                }
+                else{
+                    const resp = await fetch(`http://localhost:3000/cep/previsao/${input_cep}`,{
+                        method:'GET'
+                    });
+                    const obj= await resp.json();
+                    document.querySelector('#gifEarthSpin').style.display= "none";
+                    showPrevisao(obj);
+                    gifTempo(obj);
+                    document.querySelector('#voltar2').style.display = 'none';
                 }
             }
             catch(error){
                 console.error('Servidor indisponível: ' + error)
                 window.alert('Erro ao processar a solicitação, Por favor, tente novamente mais tarde :/')
+                document.querySelector('#gifEarthSpin').style.display = 'none';
+                document.querySelector('#voltar2').style.display = 'block';
             }
-            }
-            function showPrevisao(obj,objCEP){     
+        }
+
+            function showPrevisao(obj){     
                 document.getElementById('city').innerHTML = `${obj.name}, ${obj.sys.country}`;
                 document.getElementById('clima').innerHTML = `${obj.weather[0].description}, ${Math.round(obj.main.temp)}°C`;
                 document.getElementById('ventania').innerHTML = `Vento: ${obj.wind.speed}`;
                 
             }
-          
+
                 document.getElementById('button_cep').addEventListener('click',buscarCEP)
             function modalCidade(){
                 document.querySelector('#btnCidade').style.display = 'none'
@@ -95,7 +108,7 @@
             document.querySelector('.btnCep').style.display = 'inline-block'
         }
 
-        function gifTempo(obj,objCEP){
+        function gifTempo(obj){
             let body = document.body;
 
             if(Math.round(obj.main.temp) > 26){
